@@ -292,9 +292,20 @@ void ButtonUp() {
 		if (BT_STATE != 0 )
 		{
 			num = BT_STATE;
+			if (num == 8)
+			{
+				int j=0;
+				for (j=0;j<12;j++)
+				{
+					S_num[j]=0;
+				}
+
+				HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+				count=0;
+			}
 
 		}
-		if(BT_STATE == 0 &&num!=0)
+		if(BT_STATE == 0 &&num!=0 &&num != 8)
 		{S_num[count] = num;
 		count = count+1;
 		if(S_num[0]==64 && S_num[1]==512 &&S_num[2]==1024 &&S_num[3]==16 &&S_num[4]==4096 &&S_num[5]==32
@@ -303,18 +314,6 @@ void ButtonUp() {
 			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
 		}
 
-
-		if (BT_STATE == 8)
-		{
-			int j=0;
-			for (j=0;j<12;j++)
-			{
-				S_num[j]=0;
-			}
-
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
-			count=0;
-		}
 		num = 0;
 		}
 
